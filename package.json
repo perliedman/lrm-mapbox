@@ -1,0 +1,31 @@
+{
+  "name": "lrm-mapbox",
+  "version": "0.0.1",
+  "description": "Support for Mapbox directions API in Leaflet Routing Machine",
+  "main": "src/L.Routing.Mapbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "leaflet",
+    "routing",
+    "mapbox",
+    "directions API"
+  ],
+  "author": "Per Liedman <per@liedman.net>",
+  "license": "ISC",
+  "dependencies": {
+    "corslite": "0.0.6",
+    "leaflet": "^0.7.3"
+  },
+  "browserify": {
+    "transform": "browserify-shim"
+  },
+  "browserify-shim": {
+    "leaflet": "global:L"
+  },
+  "devDependencies": {
+    "browserify": "^8.1.3",
+    "browserify-shim": "^3.8.2"
+  }
+}
