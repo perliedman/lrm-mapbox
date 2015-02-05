@@ -84,7 +84,7 @@
 
 			for (i = 0; i < response.routes.length; i++) {
 				route = response.routes[i];
-				coordinates = this._decodePolyline(route.geometry);
+				coordinates = polyline.decode(route.geometry, 6);
 				alts.push({
 					name: route.summary,
 					coordinates: coordinates,
@@ -97,17 +97,6 @@
 			}
 
 			callback.call(context, undefined, alts);
-		},
-
-		_decodePolyline: function(geometry) {
-			var coords = polyline.decode(geometry, 6),
-				latlngs = new Array(coords.length),
-				i;
-			for (i = 0; i < coords.length; i++) {
-				latlngs[i] = new L.LatLng(coords[i][0], coords[i][1]);
-			}
-
-			return latlngs;
 		},
 
 		_toWaypoints: function(inputWaypoints, vias) {
@@ -223,8 +212,8 @@
 
 			for (i = 0; i < coordinates.length; i++) {
 				c = coordinates[i];
-				if (Math.abs(c.lat - wp.latLng.lat) < 1e-5 &&
-					Math.abs(c.lng - wp.latLng.lng) < 1e-5) {
+				if (Math.abs(c[0] - wp.latLng.lat) < 1e-5 &&
+					Math.abs(c[1] - wp.latLng.lng) < 1e-5) {
 					wpIndices.push(i);
 					wp = waypoints[++wpIndex];
 				}
