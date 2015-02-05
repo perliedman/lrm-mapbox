@@ -1,6 +1,6 @@
 {
   "name": "lrm-mapbox",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Support for Mapbox directions API in Leaflet Routing Machine",
   "main": "src/L.Routing.Mapbox.js",
   "scripts": {
