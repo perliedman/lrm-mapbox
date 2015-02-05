@@ -1,7 +1,7 @@
 Leaflet Routing Machine / Mapbox
 ================================
 
-[[!npm version](https://img.shields.io/npm/v/leaflet-routing-machine.svg)](https://www.npmjs.com/package/lrm-mapbox)
+[![npm version](https://img.shields.io/npm/v/lrm-mapbox.svg)](https://www.npmjs.com/package/lrm-mapbox)
 
 Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-machine) with support for [Mapbox's directions API](https://www.mapbox.com/developers/api/directions/).
 
