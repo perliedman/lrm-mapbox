@@ -75,6 +75,7 @@
 				route,
 				coordinates,
 			    actualWaypoints,
+			    indices,
 			    i;
 
 			context = context || callback;
@@ -85,14 +86,15 @@
 			for (i = 0; i < response.routes.length; i++) {
 				route = response.routes[i];
 				coordinates = polyline.decode(route.geometry, 6);
+				indices = this._mapWaypointIndices(actualWaypoints, route.steps, coordinates);
 				alts.push({
 					name: route.summary,
 					coordinates: coordinates,
-					instructions: this._convertInstructions(route.steps),
+					instructions: this._convertInstructions(route.steps, indices.stepIndices),
 					summary: this._convertSummary(route),
 					inputWaypoints: inputWaypoints,
 					waypoints: actualWaypoints,
-					waypointIndices: this._mapWaypointIndices(actualWaypoints, route.steps, coordinates)
+					waypointIndices: indices.waypointIndices
 				});
 			}
 
@@ -146,7 +148,7 @@
 			};
 		},
 
-		_convertInstructions: function(steps) {
+		_convertInstructions: function(steps, stepIndices) {
 			var result = [],
 			    i,
 			    step,
@@ -162,7 +164,7 @@
 						time: step.duration,
 						road: step.way_name,
 						direction: step.direction,
-						index: step[3]
+						index: stepIndices[i]
 					});
 				}
 			}
@@ -191,8 +193,6 @@
 			case 'waypoint':
 				return 'WaypointReached';
 			case 'depart':
-				// TODO: "Head on"
-				// https://github.com/DennisOSRM/Project-OSRM/blob/master/DataStructures/TurnInstructions.h#L48
 				return 'Straight';
 			case 'enter roundabout':
 				return 'Roundabout';
@@ -205,8 +205,11 @@
 
 		_mapWaypointIndices: function(waypoints, instructions, coordinates) {
 			var wpIndices = [],
+				stepIndices = [],
 				wpIndex = 0,
+				stepIndex = 0,
 				wp = waypoints[wpIndex],
+				stepCoord = instructions[stepIndex].maneuver.location.coordinates,
 			    i,
 			    c;
 
@@ -217,9 +220,18 @@
 					wpIndices.push(i);
 					wp = waypoints[++wpIndex];
 				}
+				if (stepCoord && Math.abs(c[0] - stepCoord[1]) < 1e-5 &&
+					Math.abs(c[1] - stepCoord[0]) < 1e-5) {
+					stepIndices.push(i);
+					stepIndex++;
+					stepCoord = instructions[stepIndex] && instructions[stepIndex].maneuver.location.coordinates;
+				}
 			}
 
-			return wpIndices;
+			return {
+				waypointIndices: wpIndices,
+				stepIndices: stepIndices
+			};
 		}
 	});
 
