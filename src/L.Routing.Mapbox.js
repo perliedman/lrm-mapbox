@@ -160,8 +160,8 @@
 				if (type) {
 					result.push({
 						type: type,
-						distance: step.distance,
-						time: step.duration,
+						distance: step.distance || 0,
+						time: step.duration || 0,
 						road: step.way_name,
 						direction: step.direction,
 						index: stepIndices[i]
