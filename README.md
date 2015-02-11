@@ -5,6 +5,8 @@ Leaflet Routing Machine / Mapbox
 
 Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-machine) with support for [Mapbox's directions API](https://www.mapbox.com/developers/api/directions/).
 
+[See the lrm-mapbox demo](http://www.liedman.net/lrm-mapbox/)
+
 ## Installing
 
 To use with for example Browserify:
