@@ -4,7 +4,7 @@
   "description": "Support for Mapbox directions API in Leaflet Routing Machine",
   "main": "src/L.Routing.Mapbox.js",
   "scripts": {
-    "prepublish": "mkdir -p dist && browserify src/L.Routing.Mapbox.js >dist/lrm-mapbox.js",
+    "dist": "./scripts/dist.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,14 +20,12 @@
     "leaflet": "^0.7.3",
     "polyline": "0.0.3"
   },
-  "browserify": {
-    "transform": "browserify-shim"
-  },
   "browserify-shim": {
     "leaflet": "global:L"
   },
   "devDependencies": {
     "browserify": "^8.1.3",
-    "browserify-shim": "^3.8.2"
+    "browserify-shim": "^3.8.2",
+    "uglify-js": "^2.4.16"
   }
 }
