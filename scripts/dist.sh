@@ -2,7 +2,7 @@
 
 VERSION=`echo "console.log(require('./package.json').version)" | node`
 ORIGIN=`git remote -v|grep origin|head -n1|cut -f2|cut -d" " -f1`
-TMP=.gh-pages-update
+TMP=/tmp/.gh-pages-update
 CWD=`pwd`
 
 echo Building dist files for $VERSION...
