@@ -17,6 +17,7 @@ git clone -b gh-pages . $TMP
 cd $TMP
 git remote set-url origin $ORIGIN
 git fetch origin gh-pages
+git rebase origin/gh-pages
 
 mkdir -p dist
 mkdir -p _data
