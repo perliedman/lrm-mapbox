@@ -1,3 +1,4 @@
 name: Leaflet Routing Machine / Mapbox
 markdown: redcarpet
 pygments: true
+baseurl: /lrm-mapbox

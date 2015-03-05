@@ -1,29 +1,27 @@
---
+---
 layout: default
---
+---
 
-Leaflet Routing Machine / Mapbox
+[Leaflet Routing Machine / Mapbox](https://github.com/perliedman/lrm-mapbox)
 ================================
-
-[![npm version](https://img.shields.io/npm/v/lrm-mapbox.svg)](https://www.npmjs.com/package/lrm-mapbox)
-
-Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-machine) with support for [Mapbox's directions API](https://www.mapbox.com/developers/api/directions/).
-
-[See the lrm-mapbox demo](http://www.liedman.net/lrm-mapbox/)
-
-## Installing
 
 Download prebuilt files:
 
 <ul>
-{% for version in site.data.versions %}
+{% for version in site.data.versions reversed %}
   <li>
-    <a href="dist/lrm-mapbox-{{ version.version }}.js">
+    <a href="{{site.baseurl}}/dist/lrm-mapbox-{{ version.version }}.js">
       lrm-mapbox-{{ version.version }}.js
     </a>
+    (<a href="{{site.baseurl}}/dist/lrm-mapbox-{{ version.version }}.min.js">
+      lrm-mapbox-{{ version.version }}.min.js
+    </a>)
   </li>
 {% endfor %}
 </ul>
+
+Just load one of these files with a `<script>` tag in your page, after
+Leaflet and Leaflet Routing Machine has been loaded.
 
 Or, to use with for example Browserify:
 
@@ -31,20 +29,5 @@ Or, to use with for example Browserify:
 npm install --save lrm-mapbox
 ```
 
-There's not pre-built files yet, but I will get to it.
-
-## Using
-
-There's a single class exported by this module, `L.Routing.Mapbox`. It implements the [`IRouter`](http://www.liedman.net/leaflet-routing-machine/api/#irouter) interface. Use it to replace Leaflet Routing Machine's default OSRM router implementation:
-
-```javascript
-var L = require('leaflet');
-require('leaflet-routing-machine');
-require('lrm-mapbox'); // This will tack on the class to the L.Routing namespace
-
-L.Routing.control({
-    router: new L.Routing.Mapbox('your mapbox access token'),
-}).addTo(map);
-```
-
-Note that you will need to pass a valid Mapbox access token to the constructor.
+See the [lrm-mapbox project page](https://github.com/perliedman/lrm-mapbox) for info 
+and docs on using the plugin.
