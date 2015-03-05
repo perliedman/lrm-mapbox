@@ -9,13 +9,15 @@ Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-
 
 ## Installing
 
+Go to the [download page](http://www.liedman.net/lrm-mapbox/download/) to get the script
+to include in your page. Put the script after Leaflet and Leaflet Routing Machine has been
+loaded.
+
 To use with for example Browserify:
 
 ```sh
 npm install --save lrm-mapbox
 ```
-
-There's not pre-built files yet, but I will get to it.
 
 ## Using
 
