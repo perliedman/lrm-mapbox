@@ -9,7 +9,7 @@
 
 	L.Routing.Mapbox = L.Class.extend({
 		options: {
-			serviceUrl: '//api.tiles.mapbox.com/v4/directions/',
+			serviceUrl: 'https://api.tiles.mapbox.com/v4/directions/',
 			timeout: 30 * 1000,
 			profile: 'mapbox.driving'
 		},
