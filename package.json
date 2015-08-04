@@ -5,6 +5,7 @@
   "main": "src/L.Routing.Mapbox.js",
   "scripts": {
     "dist": "./scripts/dist.sh",
+    "build": "./scripts/build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

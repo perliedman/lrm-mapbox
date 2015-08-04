@@ -5,11 +5,7 @@ ORIGIN=`git remote -v|grep origin|head -n1|cut -f2|cut -d" " -f1`
 TMP=/tmp/.gh-pages-update
 CWD=`pwd`
 
-echo Building dist files for $VERSION...
-mkdir -p dist
-browserify -t browserify-shim src/L.Routing.Mapbox.js >dist/lrm-mapbox.js
-uglifyjs dist/lrm-mapbox.js >dist/lrm-mapbox.min.js
-echo Done.
+./scripts/build.sh
 
 echo Updating dist files on gh-pages...
 rm -rf $TMP
