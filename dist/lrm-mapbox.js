@@ -189,7 +189,7 @@ if (typeof module !== undefined) module.exports = polyline;
 (function() {
 	'use strict';
 
-	var L = (typeof window !== "undefined" ? window.L : typeof global !== "undefined" ? global.L : null);
+	var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null);
 	var corslite = require('corslite');
 	var polyline = require('polyline');
 
@@ -197,7 +197,7 @@ if (typeof module !== undefined) module.exports = polyline;
 
 	L.Routing.Mapbox = L.Class.extend({
 		options: {
-			serviceUrl: '//api.tiles.mapbox.com/v4/directions/',
+			serviceUrl: 'https://api.tiles.mapbox.com/v4/directions/',
 			timeout: 30 * 1000,
 			profile: 'mapbox.driving'
 		},
