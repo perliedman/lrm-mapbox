@@ -55,7 +55,7 @@
 
 				clearTimeout(timer);
 				if (!timedOut) {
-					data = JSON.parse(resp.responseText);
+					data = resp && resp.responseText ? JSON.parse(resp.responseText) : {};
 					if (!err && !data.hasOwnProperty('error')) {
 						this._routeDone(data, wps, callback, context);
 					} else {
