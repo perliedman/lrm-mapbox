@@ -55,13 +55,13 @@
 
 				clearTimeout(timer);
 				if (!timedOut) {
-					if (!err) {
-						data = JSON.parse(resp.responseText);
+					data = resp && resp.responseText ? JSON.parse(resp.responseText) : {};
+					if (!err && !data.hasOwnProperty('error')) {
 						this._routeDone(data, wps, callback, context);
 					} else {
 						callback.call(context || callback, {
 							status: -1,
-							message: 'HTTP request failed: ' + err
+							message: 'HTTP request failed: ' + (err || data.error)
 						});
 					}
 				}
