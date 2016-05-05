@@ -243,13 +243,13 @@ if (typeof module !== undefined) module.exports = polyline;
 
 				clearTimeout(timer);
 				if (!timedOut) {
-					if (!err) {
-						data = JSON.parse(resp.responseText);
+					data = resp && resp.responseText ? JSON.parse(resp.responseText) : {};
+					if (!err && !data.hasOwnProperty('error')) {
 						this._routeDone(data, wps, callback, context);
 					} else {
 						callback.call(context || callback, {
 							status: -1,
-							message: 'HTTP request failed: ' + err
+							message: 'HTTP request failed: ' + (err || data.error)
 						});
 					}
 				}
@@ -414,6 +414,18 @@ if (typeof module !== undefined) module.exports = polyline;
 					stepIndex++;
 					stepCoord = instructions[stepIndex] && instructions[stepIndex].maneuver.location.coordinates;
 				}
+			}
+
+			// For some reason, Mapbox Directions sometimes doesn't return a coordinate
+			// which is exactly the last waypoint; it looks like they might accidentally truncate
+			// the last oordinate or similar; this is a workaround: if we're mising the last
+			// waypoint, just add the last coordinate as a probable match.
+			if (wpIndices.length < waypoints.length && wpIndex === waypoints.length - 1) {
+				wpIndices.push(coordinates.length - 1);
+			}
+
+			if (wpIndices.length !== waypoints.length) {
+				console.warn('Could not find all waypoints in route\'s coordinates. :(');
 			}
 
 			return {
