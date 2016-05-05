@@ -228,6 +228,18 @@
 				}
 			}
 
+			// For some reason, Mapbox Directions sometimes doesn't return a coordinate
+			// which is exactly the last waypoint; it looks like they might accidentally truncate
+			// the last oordinate or similar; this is a workaround: if we're mising the last
+			// waypoint, just add the last coordinate as a probable match.
+			if (wpIndices.length < waypoints.length && wpIndex === waypoints.length - 1) {
+				wpIndices.push(coordinates.length - 1);
+			}
+
+			if (wpIndices.length !== waypoints.length) {
+				console.warn('Could not find all waypoints in route\'s coordinates. :(');
+			}
+
 			return {
 				waypointIndices: wpIndices,
 				stepIndices: stepIndices
