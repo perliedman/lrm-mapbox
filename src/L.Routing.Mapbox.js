@@ -215,13 +215,13 @@
 
 			for (i = 0; i < coordinates.length; i++) {
 				c = coordinates[i];
-				if (Math.abs(c[0] - wp.latLng.lat) < 1e-5 &&
-					Math.abs(c[1] - wp.latLng.lng) < 1e-5) {
+				if (Math.abs(c[0] - wp.latLng.lat) < 1e-4 &&
+					Math.abs(c[1] - wp.latLng.lng) < 1e-4) {
 					wpIndices.push(i);
 					wp = waypoints[++wpIndex];
 				}
-				if (stepCoord && Math.abs(c[0] - stepCoord[1]) < 1e-5 &&
-					Math.abs(c[1] - stepCoord[0]) < 1e-5) {
+				if (stepCoord && Math.abs(c[0] - stepCoord[1]) < 1e-4 &&
+					Math.abs(c[1] - stepCoord[0]) < 1e-4) {
 					stepIndices.push(i);
 					stepIndex++;
 					stepCoord = instructions[stepIndex] && instructions[stepIndex].maneuver.location.coordinates;
