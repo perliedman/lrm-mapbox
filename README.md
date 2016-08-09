@@ -1,6 +1,8 @@
 Leaflet Routing Machine / Mapbox
 ================================
 
+__DEPRECATED__ Leaflet Routing Machine v3.1.0 and up natively supports Mapbox Directions by using the builtin class `L.Routing.Mapbox`. If you for some reason need support for [Mapbox directions v4](https://www.mapbox.com/api-documentation/pages/directions-v4.html), you can still use this plugin.
+
 [![npm version](https://img.shields.io/npm/v/lrm-mapbox.svg)](https://www.npmjs.com/package/lrm-mapbox)
 
 Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-machine) with support for [Mapbox's directions API](https://www.mapbox.com/developers/api/directions/).
